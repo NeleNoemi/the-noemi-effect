@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Noemi Effect</title>
+<meta name="description" content="The Noemi Effect – Marketing mit Wirkung für Organisationen, Vereine und gemeinnützige Veranstaltungen. Von Nele Noemi Franken, Düsseldorf.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFF9FA; --surface:#FFFFFF; --blush:#FCE8EE; --rose:#F4B8C9; --rose-2:#F8D2DD;
+    --accent:#C8467A; --accent-dark:#9E2F5C; --ink:#2B1A22; --muted:#6E5A63; --line:#F0D9E0;
+    --radius:22px; --max:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"DM Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:400;line-height:1.1;letter-spacing:-.01em}
+  em{font-style:italic;color:var(--accent)}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:20;background:rgba(255,249,250,.85);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+  header.scrolled{border-color:var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+  .logo{font-family:"Fraunces",serif;font-size:22px;text-decoration:none;white-space:nowrap}
+  .logo span{color:var(--accent);font-style:italic}
+  .links{display:flex;gap:28px;list-style:none;font-size:15px}
+  .links a{text-decoration:none;color:var(--muted);transition:color .2s}
+  .links a:hover{color:var(--accent)}
+  .lang{display:flex;background:var(--blush);border-radius:999px;padding:4px}
+  .lang button{border:0;background:none;font:inherit;font-size:13px;font-weight:700;padding:6px 11px;border-radius:999px;cursor:pointer;color:var(--muted);transition:all .2s}
+  .lang button[aria-pressed="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 4px rgba(200,70,122,.18)}
+
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:15px 26px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:transform .2s,background .2s,box-shadow .2s,color .2s,border-color .2s}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px -8px rgba(200,70,122,.6)}
+  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .btn .arr{transition:transform .2s}.btn:hover .arr{transform:translateX(3px)}
+
+  /* HERO */
+  html,body{overflow-x:clip}
+  .hero{padding:72px 0 64px;position:relative;overflow-x:clip}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .hero h1{font-size:clamp(44px,6.2vw,82px);margin:18px 0 24px}
+  .hero p.lead{font-size:20px;color:var(--muted);max-width:540px}
+  .cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+  .blob{position:absolute;border-radius:50%;filter:blur(40px);z-index:-1;opacity:.55;animation:drift 18s ease-in-out infinite alternate}
+  .blob.b1{width:520px;height:520px;right:-120px;top:-60px;background:var(--rose)}
+  .blob.b2{width:340px;height:340px;left:-140px;bottom:-60px;background:var(--rose-2);animation-duration:22s}
+  @keyframes drift{to{transform:translate(-40px,30px) scale(1.08)}}
+
+  /* hero stage */
+  .stage{position:relative;aspect-ratio:1;max-width:480px;width:100%;justify-self:center}
+  .ring{position:absolute;inset:12%;animation:spin 28s linear infinite}
+  .ring text{font-family:"DM Sans";font-size:10px;font-weight:700;letter-spacing:1.5px;fill:var(--accent);text-transform:uppercase}
+  .core{position:absolute;inset:27%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0%,var(--blush) 55%,var(--rose) 100%);display:grid;place-items:center;box-shadow:0 30px 60px -30px rgba(158,47,92,.5)}
+  .core span{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(34px,4.6vw,54px);color:var(--accent);animation:pulse 4s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes pulse{50%{transform:scale(1.06)}}
+  .float{position:absolute;background:var(--surface);border-radius:18px;padding:12px 14px;box-shadow:0 18px 40px -18px rgba(43,26,34,.28);font-size:13px;font-weight:700;display:flex;flex-direction:column;gap:8px;animation:bob 6s ease-in-out infinite}
+  .float small{font-weight:500;color:var(--muted);font-size:12px}
+  @keyframes bob{50%{transform:translateY(-12px)}}
+  .f-ads{left:-2%;top:8%;width:150px}
+  .f-mail{right:-2%;top:14%;animation-delay:-2s}
+  .f-reel{right:2%;bottom:6%;animation-delay:-4s;padding:10px}
+  .f-ai{left:4%;bottom:12%;animation-delay:-1s;flex-direction:row;align-items:center}
+  .bars{display:flex;align-items:flex-end;gap:5px;height:46px}
+  .bars i{flex:1;background:linear-gradient(var(--accent),var(--rose));border-radius:4px 4px 2px 2px;transform-origin:bottom;animation:grow 2.6s ease-in-out infinite}
+  .bars i:nth-child(1){height:35%}.bars i:nth-child(2){height:55%;animation-delay:.15s}.bars i:nth-child(3){height:48%;animation-delay:.3s}.bars i:nth-child(4){height:75%;animation-delay:.45s}.bars i:nth-child(5){height:100%;animation-delay:.6s}
+  @keyframes grow{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+  .env{width:64px;height:44px;position:relative}
+  .env svg{width:100%;height:100%}
+  .env .flap{transform-origin:50% 0;animation:flap 3s ease-in-out infinite}
+  @keyframes flap{0%,40%,100%{transform:scaleY(1)}60%,80%{transform:scaleY(-1)}}
+  .env .dotn{position:absolute;right:-6px;top:-6px;width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;display:grid;place-items:center;animation:pop 3s ease-in-out infinite}
+  @keyframes pop{0%,55%{transform:scale(0)}65%{transform:scale(1.2)}75%,100%{transform:scale(1)}}
+  .phone{width:78px;height:132px;border-radius:16px;background:linear-gradient(160deg,var(--rose) 0%,var(--accent) 100%);position:relative;overflow:hidden}
+  .phone .play{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center}
+  .phone .play::after{content:"";border-left:9px solid var(--accent);border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+  .phone .prog{position:absolute;left:8px;right:8px;bottom:10px;height:3px;background:rgba(255,255,255,.35);border-radius:3px;overflow:hidden}
+  .phone .prog::after{content:"";position:absolute;inset:0;background:#fff;transform-origin:left;animation:prog 4s linear infinite}
+  @keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .heart{position:absolute;right:10px;bottom:20px;color:#fff;font-size:13px;opacity:0;animation:rise 2.4s ease-out infinite}
+  .heart:nth-of-type(2){right:20px;animation-delay:.8s}.heart:nth-of-type(3){right:6px;animation-delay:1.6s}
+  @keyframes rise{0%{opacity:0;transform:translateY(0) scale(.6)}20%{opacity:1}100%{opacity:0;transform:translateY(-70px) scale(1.1)}}
+  .spark{width:26px;height:26px;color:var(--accent);animation:twinkle 3s ease-in-out infinite}
+  @keyframes twinkle{50%{transform:rotate(90deg) scale(1.2)}}
+
+  /* MARQUEE */
+  .marquee{overflow:hidden;border-block:1px solid var(--line);background:var(--surface);padding:18px 0;margin-top:24px}
+  .track{display:flex;gap:44px;width:max-content;animation:scroll 34s linear infinite}
+  .track span{font-family:"Fraunces",serif;font-size:24px;white-space:nowrap;display:flex;align-items:center;gap:44px}
+  .track span::after{content:"✦";color:var(--accent);font-size:16px}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* SECTIONS */
+  section{padding:96px 0}
+  .head{max-width:660px;margin-bottom:52px}
+  .head h2{font-size:clamp(34px,4.4vw,52px);margin-top:12px}
+  .head p{color:var(--muted);margin-top:16px;font-size:18px}
+
+  /* SERVICES */
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 28px;transition:transform .25s,box-shadow .25s,border-color .25s}
+  .card:hover{transform:translateY(-6px);border-color:var(--rose);box-shadow:0 22px 44px -24px rgba(200,70,122,.4)}
+  .card h3{font-size:23px;margin:22px 10px 10px}
+  .card p{color:var(--muted);font-size:15.5px;margin:0 10px}
+  .scene{height:150px;border-radius:16px;background:var(--blush);position:relative;overflow:hidden;display:grid;place-items:center}
+  .scene *{animation-play-state:paused}
+  .in .scene *, .scene.in *{animation-play-state:running}
+  .scene svg{width:78%;height:78%;overflow:visible}
+
+  /* scene: chart */
+  .draw{stroke-dasharray:300;stroke-dashoffset:300;animation:draw 3.2s ease-in-out infinite}
+  @keyframes draw{0%{stroke-dashoffset:300}55%,100%{stroke-dashoffset:0}}
+  .ping{transform-box:fill-box;transform-origin:center;animation:ping 3.2s ease-out infinite}
+  @keyframes ping{0%,50%{opacity:0;transform:scale(.4)}60%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(2.4)}}
+  /* scene: shop */
+  .drop{transform-box:fill-box;animation:drop 2.8s cubic-bezier(.5,0,.6,1.4) infinite}
+  .drop.d2{animation-delay:.9s}.drop.d3{animation-delay:1.8s}
+  @keyframes drop{0%{transform:translateY(-70px);opacity:0}25%{opacity:1}55%,100%{transform:translateY(0);opacity:0}}
+  .bag{transform-box:fill-box;transform-origin:bottom;animation:squish 2.8s ease-in-out infinite}
+  @keyframes squish{0%,45%,100%{transform:scale(1)}55%{transform:scale(1.08,.92)}}
+  /* scene: content */
+  .write{transform-box:fill-box;transform-origin:left;animation:write 4s ease-in-out infinite}
+  .write.w2{animation-delay:.5s}.write.w3{animation-delay:1s}
+  @keyframes write{0%{transform:scaleX(0)}40%,80%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+  .flash{animation:flash 4s ease-in-out infinite}
+  @keyframes flash{0%,88%,100%{opacity:0}92%{opacity:.9}}
+  /* scene: funnel */
+  .fall{transform-box:fill-box;animation:fall 2.4s ease-in infinite}
+  .fall.f2{animation-delay:.6s}.fall.f3{animation-delay:1.2s}.fall.f4{animation-delay:1.8s}
+  @keyframes fall{0%{transform:translate(var(--x,0),-10px);opacity:0}15%{opacity:1}100%{transform:translate(0,100px);opacity:0}}
+  .coin{transform-box:fill-box;transform-origin:center;animation:coin 2.4s ease-in-out infinite}
+  @keyframes coin{0%,60%{transform:scale(0)}75%{transform:scale(1.2)}85%,100%{transform:scale(1)}}
+  /* scene: community */
+  .link{stroke-dasharray:6 6;animation:dash 1.4s linear infinite}
+  @keyframes dash{to{stroke-dashoffset:-24}}
+  .node{transform-box:fill-box;transform-origin:center;animation:node 3s ease-in-out infinite}
+  .node.n2{animation-delay:1s}.node.n3{animation-delay:2s}
+  @keyframes node{50%{transform:scale(1.15)}}
+  .beat{transform-box:fill-box;transform-origin:center;animation:beat 1.2s ease-in-out infinite}
+  @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+  /* scene: social feed */
+  .feed{animation:feed 6s cubic-bezier(.7,0,.3,1) infinite}
+  @keyframes feed{0%,25%{transform:translateY(0)}33%,58%{transform:translateY(-62px)}66%,91%{transform:translateY(-124px)}100%{transform:translateY(-186px)}}
+
+  /* ABOUT */
+  .about{background:var(--blush);border-radius:40px;margin:0 16px}
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+  .about-text p{margin-bottom:18px;font-size:18px}
+  .about-text .sign{font-family:"Fraunces",serif;font-style:italic;font-size:24px;color:var(--accent)}
+  .polaroids{position:relative;height:420px}
+  .pol{position:absolute;width:58%;aspect-ratio:4/5;background:var(--surface);border-radius:14px;padding:12px 12px 44px;box-shadow:0 24px 50px -24px rgba(43,26,34,.35);transition:transform .4s}
+  .pol .ph{width:100%;height:100%;border-radius:8px;display:grid;place-items:center;overflow:hidden}
+  .pol .ph svg{width:62%;height:62%}
+  .pol b{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-family:"Fraunces",serif;font-style:italic;font-weight:400;font-size:17px}
+  .pol.p1{left:0;top:30px;transform:rotate(-7deg)}
+  .pol.p2{right:0;top:0;transform:rotate(6deg)}
+  .pol.p3{left:22%;bottom:-10px;transform:rotate(-1deg);z-index:2}
+  .polaroids:hover .p1{transform:rotate(-11deg) translate(-12px,-6px)}
+  .polaroids:hover .p2{transform:rotate(10deg) translate(12px,-6px)}
+  .polaroids:hover .p3{transform:rotate(0) translateY(10px)}
+  .ph.c1{background:linear-gradient(150deg,#FBD5E0,#F4B8C9)}
+  .ph.c2{background:linear-gradient(150deg,#FFE7D6,#F9C6B5)}
+  .ph.c3{background:linear-gradient(150deg,#F3E0F7,#E4BDEB)}
+  .sway{transform-box:fill-box;transform-origin:bottom;animation:sway 4s ease-in-out infinite}
+  @keyframes sway{50%{transform:rotate(6deg)}}
+  .orbit{transform-box:view-box;transform-origin:50px 50px;animation:spin 10s linear infinite}
+
+  /* VALUES */
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .value{border-radius:var(--radius);padding:32px;background:var(--surface);border:1px solid var(--line);position:relative;overflow:hidden}
+  .value::before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:var(--blush);right:-50px;top:-50px;transition:transform .5s}
+  .value:hover::before{transform:scale(1.6)}
+  .value > *{position:relative}
+  .value .vi{width:64px;height:64px;margin-bottom:22px}
+  .value h3{font-size:25px;margin-bottom:10px}
+  .value p{color:var(--muted);font-size:15.5px}
+
+  /* PROCESS / ERSTGESPRÄCH */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s;position:relative}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .step .num{font-family:"Fraunces",serif;font-size:48px;color:var(--rose);line-height:1}
+  .step h3{font-size:24px;margin:14px 0 8px}
+  .step p{color:var(--muted);font-size:15.5px}
+  .step.hl{background:var(--accent);border-color:var(--accent);color:#fff}
+  .step.hl .num{color:#fff;opacity:.6}.step.hl p{color:#FBE1EA}
+  .band{margin-top:44px;border-radius:30px;background:linear-gradient(120deg,var(--rose-2),var(--rose));padding:44px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;position:relative;overflow:hidden}
+  .band h3{font-size:clamp(28px,3.4vw,40px);max-width:560px}
+  .band p{color:var(--ink);opacity:.8;margin-top:8px}
+  .band .cal{position:absolute;right:28%;top:-20px;width:90px;opacity:.25;animation:bob 6s ease-in-out infinite}
+
+  /* EFFECT */
+  .effects{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+  .effect{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:32px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
+  .effect:hover{transform:translateY(-6px);box-shadow:0 22px 44px -24px rgba(200,70,122,.4)}
+  .effect .en{position:absolute;right:22px;top:14px;font-family:"Fraunces",serif;font-size:64px;color:var(--blush);line-height:1}
+  .effect svg{width:72px;height:72px;margin-bottom:20px;position:relative}
+  .effect h3{font-size:25px;margin-bottom:10px}
+  .effect p{color:var(--muted);font-size:15.5px}
+  .you{display:flex;align-items:center;gap:18px;margin-top:28px;padding:22px 26px;border-radius:var(--radius);background:var(--blush);font-size:18px}
+  .you b{flex:none;width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:400;font-size:22px;animation:pulse 3s ease-in-out infinite}
+
+  /* NONPROFIT EVENTS */
+  .np{background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);color:#fff;border-radius:40px;margin:0 16px;position:relative;overflow:hidden}
+  .np::before,.np::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.07);animation:drift 16s ease-in-out infinite alternate}
+  .np::before{width:420px;height:420px;right:-120px;top:-140px}
+  .np::after{width:260px;height:260px;left:-80px;bottom:-100px;animation-duration:20s}
+  .np .eyebrow{color:var(--rose)}
+  .np-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+  .np h2{font-size:clamp(34px,4.4vw,52px);margin:12px 0 22px}
+  .np h2 em{color:var(--rose)}
+  .np p{color:#FBE1EA;font-size:18px;margin-bottom:16px}
+  .np .btn{background:#fff;color:var(--accent);margin-top:14px;box-shadow:0 10px 30px -10px rgba(0,0,0,.35)}
+  .np .btn:hover{background:var(--blush);transform:translateY(-2px)}
+  .np-list{list-style:none;display:grid;gap:12px;counter-reset:np}
+  .np-list li{counter-increment:np;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:16px 18px;transition:background .25s,transform .25s}
+  .np-list li:hover{background:rgba(255,255,255,.18);transform:translateX(6px)}
+  .np-list li::before{content:counter(np,decimal-leading-zero);font-family:"Fraunces",serif;font-size:24px;color:var(--rose);line-height:1.2}
+  .np-list b{display:block;font-size:17px}
+  .np-list span{color:#FBE1EA;font-size:15px}
+
+  /* TOOLS */
+  .tool-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 20px}
+  .tool-group h3{font-family:"DM Sans",sans-serif;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:15px;transition:all .2s}
+  .chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .chip b{color:var(--accent);font-weight:700}
+
+  /* CONTACT */
+  .contact{background:var(--ink);color:#fff;border-radius:40px;margin:0 16px}
+  .contact .head p{color:#D9C6CE}
+  .contact .eyebrow{color:var(--rose)}
+  .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+  .contact-info p{color:#D9C6CE;margin-bottom:22px}
+  .contact-info a{color:var(--rose);text-decoration:none;font-weight:500}
+  .contact-info a:hover{text-decoration:underline}
+  form{display:grid;gap:16px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  label{display:block;font-size:14px;color:#D9C6CE;margin-bottom:6px}
+  input,select,textarea{width:100%;font:inherit;font-size:16px;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;transition:border-color .2s,background .2s}
+  select option{color:var(--ink)}
+  textarea{min-height:140px;resize:vertical}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--rose);background:rgba(255,255,255,.1)}
+  .hp{position:absolute;left:-9999px}
+  .check{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:#D9C6CE}
+  .check input{width:18px;height:18px;margin-top:3px;accent-color:var(--accent);flex:none}
+  .check.call{background:rgba(244,184,201,.12);border:1px solid rgba(244,184,201,.3);border-radius:14px;padding:14px 16px;color:#fff}
+  .status{font-size:15px;min-height:22px}
+  .status.ok{color:#9FE3BE}.status.err{color:#FFB3C6}
+  form .btn-primary{justify-self:start}
+  form .btn-primary:disabled{opacity:.6;cursor:wait;transform:none}
+
+  footer{padding:40px 0 48px;color:var(--muted);font-size:14px}
+  .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--accent)}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  .services .reveal:nth-child(3n+2),.values .reveal:nth-child(2),.steps .reveal:nth-child(2){transition-delay:.12s}
+  .services .reveal:nth-child(3n),.values .reveal:nth-child(3),.steps .reveal:nth-child(3){transition-delay:.24s}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}html{scroll-behavior:auto}
+    .draw{stroke-dashoffset:0}
+  }
+  @media (max-width:960px){
+    .links{display:none}
+    .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+    .stage{max-width:400px}
+    .services,.values,.steps,.effects{grid-template-columns:1fr 1fr}
+    .np-grid{grid-template-columns:1fr;gap:40px}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero{padding:44px 0 40px}
+    section{padding:72px 0}
+    .services,.values,.steps,.effects,.tool-groups,.row{grid-template-columns:1fr}
+    .about,.contact,.np{margin:0 8px;border-radius:28px}
+    .you{flex-direction:column;align-items:flex-start;font-size:17px}
+    .logo{font-size:19px}
+    .lang button{padding:6px 9px}
+    .stage{max-width:330px}
+    .f-ads{width:124px}
+    .phone{width:62px;height:106px}
+    .polaroids{height:340px}
+    .band{padding:30px}
+    .band .cal{display:none}
+    .track span{font-size:20px}
+  }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <nav class="wrap nav">
+    <a href="#top" class="logo">the noemi <span>effect</span></a>
+    <ul class="links">
+      <li><a href="#effekt" data-i18n="nav.effect"></a></li>
+      <li><a href="#events" data-i18n="nav.events"></a></li>
+      <li><a href="#leistungen" data-i18n="nav.services"></a></li>
+      <li><a href="#erstgespraech" data-i18n="nav.call"></a></li>
+      <li><a href="#kontakt" data-i18n="nav.contact"></a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="hero.eyebrow"></span>
+        <h1 data-i18n-html="hero.title"></h1>
+        <p class="lead" data-i18n="hero.lead"></p>
+        <div class="cta">
+          <a href="#kontakt" class="btn btn-primary js-call"><span data-i18n="hero.cta1"></span><span class="arr">→</span></a>
+          <a href="#effekt" class="btn btn-ghost" data-i18n="hero.cta2"></a>
+        </div>
+      </div>
+
+      <div class="stage reveal" aria-hidden="true">
+        <svg class="ring" viewBox="0 0 200 200">
+          <defs><path id="circ" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs>
+          <text><textPath href="#circ" id="ringtext"></textPath></text>
+        </svg>
+        <div class="core"><span>effect</span></div>
+
+        <div class="float f-ads"><span data-i18n="fl.ads"></span><div class="bars"><i></i><i></i><i></i><i></i><i></i></div><small data-i18n="fl.ads2"></small></div>
+        <div class="float f-mail">
+          <div class="env"><svg viewBox="0 0 64 44" fill="none"><rect x="1" y="1" width="62" height="42" rx="6" fill="#FCE8EE" stroke="#C8467A" stroke-width="2"/><path class="flap" d="M2 3 32 25 62 3" stroke="#C8467A" stroke-width="2" stroke-linejoin="round"/></svg><span class="dotn">1</span></div>
+          <span data-i18n="fl.mail"></span>
+        </div>
+        <div class="float f-reel"><div class="phone"><div class="play"></div><span class="heart">♥</span><span class="heart">♥</span><span class="heart">♥</span><div class="prog"></div></div></div>
+        <div class="float f-ai"><svg class="spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5l2.4 6.6L21 10.5l-6.6 2.4L12 19.5l-2.4-6.6L3 10.5l6.6-2.4z"/></svg><span data-i18n="fl.ai"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <!-- DER EFFEKT -->
+  <section id="effekt">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow" data-i18n="eff.eyebrow"></span>
+        <h2 data-i18n-html="eff.title"></h2>
+        <p data-i18n="eff.lead"></p>
+      </div>
+      <div class="effects">
+        <article class="effect reveal"><span class="en">01</span>
+          <svg viewBox="0 0 72 72" fill="none" aria-hidden="true"><circle class="ping" cx="36" cy="36" r="14" fill="#C8467A" opacity=".3"/><path d="M8 36s10-18 28-18 28 18 28 18-10 18-28 18S8 36 8 36z" stroke="#C8467A" stroke-width="4" stroke-linejoin="round"/><circle cx="36" cy="36" r="8" fill="#C8467A"/></svg>
+          <h3 data-i18n="e1.t"></h3><p data-i18n="e1.d"></p></article>
+        <article class="effect reveal"><span class="en">02</span>
+          <svg viewBox="0 0 72 72" fill="none" aria-hidden="true"><path class="link" d="M14 52 36 18 58 52Z" stroke="#C8467A" stroke-width="2.5"/><g class="node"><circle cx="36" cy="18" r="10" fill="#C8467A"/></g><g class="node n2"><circle cx="14" cy="52" r="10" fill="#F4B8C9"/></g><g class="node n3"><circle cx="58" cy="52" r="10" fill="#9E2F5C"/></g></svg>
+          <h3 data-i18n="e2.t"></h3><p data-i18n="e2.d"></p></article>
+        <article class="effect reveal"><span class="en">03</span>
+          <svg viewBox="0 0 72 72" fill="none" aria-hidden="true"><path d="M12 40c0-8 8-10 14-6l10 8 10-8c6-4 14-2 14 6" stroke="#F4B8C9" stroke-width="4" stroke-linecap="round"/><path class="beat" d="M36 30c-6-6-16-3-16 5 0 9 16 19 16 19s16-10 16-19c0-8-10-11-16-5z" fill="#C8467A"/></svg>
+          <h3 data-i18n="e3.t"></h3><p data-i18n="e3.d"></p></article>
+      </div>
+      <div class="you reveal"><b data-i18n="you.b"></b><span data-i18n-html="you.t"></span></div>
+    </div>
+  </section>
+
+  <!-- GEMEINNÜTZIGE EVENTS -->
+  <section id="events" class="np">
+    <div class="wrap np-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="np.eyebrow"></span>
+        <h2 data-i18n-html="np.title"></h2>
+        <p data-i18n="np.p1"></p>
+        <p data-i18n="np.p2"></p>
+        <a href="#kontakt" class="btn js-call"><span data-i18n="np.cta"></span><span class="arr">→</span></a>
+      </div>
+      <ol class="np-list reveal">
+        <li><div><b data-i18n="np1.t"></b><span data-i18n="np1.d"></span></div></li>
+        <li><div><b data-i18n="np2.t"></b><span data-i18n="np2.d"></span></div></li>
+        <li><div><b data-i18n="np3.t"></b><span data-i18n="np3.d"></span></div></li>
+        <li><div><b data-i18n="np4.t"></b><span data-i18n="np4.d"></span></div></li>
+        <li><div><b data-i18n="np5.t"></b><span data-i18n="np5.d"></span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="leistungen">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow" data-i18n="services.eyebrow"></span>
+        <h2 data-i18n-html="services.title"></h2>
+        <p data-i18n="services.lead"></p>
+      </div>
+      <div class="services">
+        <!-- Performance -->
+        <article class="card reveal">
+          <div class="scene"><svg viewBox="0 0 200 110" fill="none">
+            <path d="M10 100H190M10 10V100" stroke="#F4B8C9" stroke-width="2"/>
+            <path class="draw" d="M14 90 50 72 80 80 112 50 142 58 184 18" stroke="#C8467A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle class="ping" cx="184" cy="18" r="9" fill="#C8467A" opacity=".35"/>
+            <circle cx="184" cy="18" r="5" fill="#C8467A"/>
+          </svg></div>
+          <h3 data-i18n="s1.t"></h3><p data-i18n="s1.d"></p>
+        </article>
+        <!-- E-Commerce -->
+        <article class="card reveal">
+          <div class="scene"><svg viewBox="0 0 200 110" fill="none">
+            <rect class="drop" x="78" y="20" width="18" height="18" rx="4" fill="#F4B8C9"/>
+            <circle class="drop d2" cx="112" cy="28" r="9" fill="#C8467A"/>
+            <rect class="drop d3" x="94" y="18" width="14" height="20" rx="3" fill="#9E2F5C"/>
+            <g class="bag"><path d="M64 48h72l-8 56H72z" fill="#fff" stroke="#C8467A" stroke-width="3" stroke-linejoin="round"/><path d="M84 48v-6a16 16 0 0 1 32 0v6" stroke="#C8467A" stroke-width="3"/></g>
+          </svg></div>
+          <h3 data-i18n="s2.t"></h3><p data-i18n="s2.d"></p>
+        </article>
+        <!-- Content -->
+        <article class="card reveal">
+          <div class="scene"><svg viewBox="0 0 200 110" fill="none">
+            <rect x="20" y="14" width="78" height="82" rx="10" fill="#fff" stroke="#C8467A" stroke-width="3"/>
+            <circle cx="46" cy="40" r="9" fill="#F4B8C9"/><path d="M26 86 50 60l16 16 10-10 18 20" stroke="#C8467A" stroke-width="3" stroke-linejoin="round"/>
+            <rect class="flash" x="20" y="14" width="78" height="82" rx="10" fill="#fff"/>
+            <rect class="write" x="112" y="26" width="70" height="8" rx="4" fill="#C8467A"/>
+            <rect class="write w2" x="112" y="46" width="56" height="8" rx="4" fill="#F4B8C9"/>
+            <rect class="write w3" x="112" y="66" width="64" height="8" rx="4" fill="#F4B8C9"/>
+          </svg></div>
+          <h3 data-i18n="s3.t"></h3><p data-i18n="s3.d"></p>
+        </article>
+        <!-- Sales -->
+        <article class="card reveal">
+          <div class="scene"><svg viewBox="0 0 200 110" fill="none">
+            <circle class="fall" style="--x:-26px" cx="100" cy="8" r="5" fill="#F4B8C9"/>
+            <circle class="fall f2" style="--x:22px" cx="100" cy="8" r="5" fill="#C8467A"/>
+            <circle class="fall f3" style="--x:-8px" cx="100" cy="8" r="5" fill="#F4B8C9"/>
+            <circle class="fall f4" style="--x:30px" cx="100" cy="8" r="5" fill="#9E2F5C"/>
+            <path d="M48 22h104l-36 40v28l-32 12V62z" fill="#fff" stroke="#C8467A" stroke-width="3" stroke-linejoin="round" opacity=".92"/>
+            <g class="coin"><circle cx="152" cy="88" r="14" fill="#C8467A"/><path d="m146 88 4 4 8-8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+          </svg></div>
+          <h3 data-i18n="s4.t"></h3><p data-i18n="s4.d"></p>
+        </article>
+        <!-- Community -->
+        <article class="card reveal">
+          <div class="scene"><svg viewBox="0 0 200 110" fill="none">
+            <path class="link" d="M50 76 100 30 150 76Z" stroke="#C8467A" stroke-width="2.5"/>
+            <g class="node"><circle cx="100" cy="30" r="16" fill="#fff" stroke="#C8467A" stroke-width="3"/><circle cx="100" cy="26" r="5" fill="#C8467A"/><path d="M91 38a9 7 0 0 1 18 0" fill="#C8467A"/></g>
+            <g class="node n2"><circle cx="50" cy="76" r="16" fill="#fff" stroke="#C8467A" stroke-width="3"/><circle cx="50" cy="72" r="5" fill="#F4B8C9"/><path d="M41 84a9 7 0 0 1 18 0" fill="#F4B8C9"/></g>
+            <g class="node n3"><circle cx="150" cy="76" r="16" fill="#fff" stroke="#C8467A" stroke-width="3"/><circle cx="150" cy="72" r="5" fill="#9E2F5C"/><path d="M141 84a9 7 0 0 1 18 0" fill="#9E2F5C"/></g>
+            <path class="beat" d="M100 68c-6-6-14-2-14 5 0 7 14 15 14 15s14-8 14-15c0-7-8-11-14-5z" fill="#C8467A"/>
+          </svg></div>
+          <h3 data-i18n="s5.t"></h3><p data-i18n="s5.d"></p>
+        </article>
+        <!-- Social -->
+        <article class="card reveal">
+          <div class="scene"><svg viewBox="0 0 200 110" fill="none">
+            <defs><clipPath id="scr"><rect x="74" y="12" width="52" height="88" rx="6"/></clipPath></defs>
+            <rect x="68" y="4" width="64" height="104" rx="12" fill="#fff" stroke="#C8467A" stroke-width="3"/>
+            <g clip-path="url(#scr)"><g class="feed">
+              <rect x="78" y="16" width="44" height="54" rx="6" fill="#F4B8C9"/><rect x="78" y="74" width="30" height="6" rx="3" fill="#C8467A"/>
+              <rect x="78" y="86" width="44" height="54" rx="6" fill="#C8467A"/><rect x="78" y="144" width="30" height="6" rx="3" fill="#F4B8C9"/>
+              <rect x="78" y="156" width="44" height="54" rx="6" fill="#9E2F5C"/><rect x="78" y="214" width="30" height="6" rx="3" fill="#C8467A"/>
+              <rect x="78" y="226" width="44" height="54" rx="6" fill="#F4B8C9"/>
+            </g></g>
+            <path class="beat" d="M156 40c-5-5-12-2-12 4 0 6 12 13 12 13s12-7 12-13c0-6-7-9-12-4z" fill="#C8467A"/>
+            <circle class="node" cx="40" cy="70" r="10" fill="#F4B8C9"/><path d="M36 70h8M40 66v8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+          </svg></div>
+          <h3 data-i18n="s6.t"></h3><p data-i18n="s6.d"></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="ueber-mich" class="about">
+    <div class="wrap about-grid">
+      <div class="about-text reveal">
+        <span class="eyebrow" data-i18n="about.eyebrow"></span>
+        <div class="head" style="margin-bottom:28px"><h2 data-i18n-html="about.title"></h2></div>
+        <p data-i18n="about.p1"></p>
+        <p data-i18n="about.p2"></p>
+        <p data-i18n="about.p3"></p>
+        <p class="sign" data-i18n="about.sign"></p>
+      </div>
+      <div class="polaroids reveal" aria-hidden="true">
+        <div class="pol p1"><div class="ph c2"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" stroke="#C8467A" stroke-width="3"/><path d="M20 50h60M50 20c-12 16-12 44 0 60M50 20c12 16 12 44 0 60" stroke="#C8467A" stroke-width="3"/><g class="orbit"><path d="m84 30 6-2-2 6-3-1z" fill="#9E2F5C"/></g></svg></div><b data-i18n="pol.1"></b></div>
+        <div class="pol p2"><div class="ph c3"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="32" width="64" height="44" rx="8" stroke="#C8467A" stroke-width="3"/><circle cx="50" cy="54" r="12" stroke="#C8467A" stroke-width="3"/><path d="M36 32l6-8h16l6 8" stroke="#C8467A" stroke-width="3" stroke-linejoin="round"/><circle class="node" cx="72" cy="42" r="3" fill="#C8467A"/></svg></div><b data-i18n="pol.2"></b></div>
+        <div class="pol p3"><div class="ph c1"><svg viewBox="0 0 100 100" fill="none"><path class="sway" d="M50 84V40" stroke="#C8467A" stroke-width="3" stroke-linecap="round"/><g class="sway"><circle cx="50" cy="32" r="10" fill="#C8467A"/><path d="M34 52c10-2 16 2 16 10M66 46c-10-2-16 2-16 10" stroke="#C8467A" stroke-width="3" stroke-linecap="round"/></g></svg></div><b data-i18n="pol.3"></b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section id="herzensthemen">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow" data-i18n="values.eyebrow"></span>
+        <h2 data-i18n-html="values.title"></h2>
+        <p data-i18n="values.lead"></p>
+      </div>
+      <div class="values">
+        <article class="value reveal">
+          <svg class="vi" viewBox="0 0 64 64" fill="none"><g class="node"><circle cx="20" cy="22" r="8" fill="#F4B8C9"/></g><g class="node n2"><circle cx="44" cy="22" r="8" fill="#C8467A"/></g><g class="node n3"><circle cx="32" cy="42" r="8" fill="#9E2F5C"/></g><path class="link" d="M20 22h24L32 42Z" stroke="#C8467A" stroke-width="2"/></svg>
+          <h3 data-i18n="v1.t"></h3><p data-i18n="v1.d"></p>
+        </article>
+        <article class="value reveal">
+          <svg class="vi" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="24" r="14" stroke="#C8467A" stroke-width="4"/><path d="M32 38v20M22 50h20" stroke="#C8467A" stroke-width="4" stroke-linecap="round"/><path class="beat" d="M32 20c-3-3-8-1-8 3 0 4 8 8 8 8s8-4 8-8c0-4-5-6-8-3z" fill="#C8467A"/></svg>
+          <h3 data-i18n="v2.t"></h3><p data-i18n="v2.d"></p>
+        </article>
+        <article class="value reveal">
+          <svg class="vi" viewBox="0 0 64 64" fill="none"><rect class="drop" x="10" y="38" width="16" height="16" rx="3" fill="#F4B8C9"/><rect class="drop d2" x="28" y="38" width="16" height="16" rx="3" fill="#C8467A"/><rect class="drop d3" x="19" y="20" width="16" height="16" rx="3" fill="#9E2F5C"/><path class="beat" d="M52 22c-3-3-8-1-8 3 0 4 8 8 8 8s8-4 8-8c0-4-5-6-8-3z" fill="#C8467A"/><rect x="10" y="38" width="16" height="16" rx="3" fill="#F4B8C9"/><rect x="28" y="38" width="16" height="16" rx="3" fill="#C8467A"/><rect x="19" y="20" width="16" height="16" rx="3" fill="#9E2F5C"/></svg>
+          <h3 data-i18n="v3.t"></h3><p data-i18n="v3.d"></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ERSTGESPRÄCH -->
+  <section id="erstgespraech" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow" data-i18n="call.eyebrow"></span>
+        <h2 data-i18n-html="call.title"></h2>
+        <p data-i18n="call.lead"></p>
+      </div>
+      <div class="steps">
+        <div class="step hl reveal"><div class="num">01</div><h3 data-i18n="st1.t"></h3><p data-i18n="st1.d"></p></div>
+        <div class="step reveal"><div class="num">02</div><h3 data-i18n="st2.t"></h3><p data-i18n="st2.d"></p></div>
+        <div class="step reveal"><div class="num">03</div><h3 data-i18n="st3.t"></h3><p data-i18n="st3.d"></p></div>
+      </div>
+      <div class="band reveal">
+        <svg class="cal" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="6" y="12" width="52" height="46" rx="8" stroke="#9E2F5C" stroke-width="4"/><path d="M6 26h52M20 6v12M44 6v12" stroke="#9E2F5C" stroke-width="4" stroke-linecap="round"/></svg>
+        <div><h3 data-i18n-html="band.t"></h3><p data-i18n="band.d"></p></div>
+        <a href="#kontakt" class="btn btn-primary js-call"><span data-i18n="band.cta"></span><span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow" data-i18n="tools.eyebrow"></span>
+        <h2 data-i18n-html="tools.title"></h2>
+      </div>
+      <div class="tool-groups">
+        <div class="tool-group reveal"><h3 data-i18n="tg1"></h3>
+          <div class="chips"><span class="chip">Google Ads</span><span class="chip">Google Analytics 4</span><span class="chip">Google Tag Manager</span><span class="chip">Conversion-Tracking</span><span class="chip">SEO</span></div></div>
+        <div class="tool-group reveal"><h3 data-i18n="tg2"></h3>
+          <div class="chips"><span class="chip">Mailchimp</span><span class="chip">CleverReach</span><span class="chip">HubSpot</span><span class="chip">WordPress</span><span class="chip">Shopware</span></div></div>
+        <div class="tool-group reveal"><h3 data-i18n="tg3"></h3>
+          <div class="chips"><span class="chip">Instagram</span><span class="chip">LinkedIn</span><span class="chip">TikTok</span><span class="chip">Facebook</span><span class="chip">Canva</span><span class="chip">Photoshop</span><span class="chip">InDesign</span></div></div>
+        <div class="tool-group reveal"><h3 data-i18n="tg4"></h3>
+          <div class="chips"><span class="chip" data-i18n-html="l1"></span><span class="chip" data-i18n-html="l2"></span><span class="chip" data-i18n-html="l3"></span><span class="chip" data-i18n-html="l4"></span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt" class="contact">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow" data-i18n="contact.eyebrow"></span>
+        <h2 data-i18n-html="contact.title"></h2>
+        <p data-i18n="contact.lead"></p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p data-i18n="contact.info"></p>
+          <p><a href="mailto:nelenoemifranken@gmail.com">nelenoemifranken@gmail.com</a></p>
+          <p><a href="https://www.linkedin.com/in/nele-noemi-franken/" target="_blank" rel="noopener">LinkedIn ↗</a></p>
+          <p data-i18n="contact.loc"></p>
+        </div>
+        <form id="form" class="reveal" novalidate>
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+          <div class="row">
+            <div><label for="f-name" data-i18n="f.name"></label><input id="f-name" name="Name" required autocomplete="name"></div>
+            <div><label for="f-mail" data-i18n="f.mail"></label><input id="f-mail" name="email" type="email" required autocomplete="email"></div>
+          </div>
+          <div class="row">
+            <div><label for="f-org" data-i18n="f.org"></label><input id="f-org" name="Organisation" autocomplete="organization"></div>
+            <div><label for="f-topic" data-i18n="f.topic"></label>
+              <select id="f-topic" name="Thema">
+                <option data-i18n="f.np"></option>
+                <option data-i18n="s1.t"></option><option data-i18n="s2.t"></option><option data-i18n="s3.t"></option>
+                <option data-i18n="s4.t"></option><option data-i18n="s5.t"></option><option data-i18n="s6.t"></option>
+                <option data-i18n="f.other"></option>
+              </select></div>
+          </div>
+          <div><label for="f-msg" data-i18n="f.msg"></label><textarea id="f-msg" name="Nachricht" required></textarea></div>
+          <label class="check call"><input type="checkbox" id="f-call" name="Erstgespraech" value="Ja"><span data-i18n="f.call"></span></label>
+          <div id="f-when-wrap" hidden><label for="f-when" data-i18n="f.when"></label><input id="f-when" name="Wunschtermin"></div>
+          <label class="check"><input type="checkbox" id="f-consent" required><span data-i18n="f.consent"></span></label>
+          <button class="btn btn-primary" type="submit" data-i18n="f.send"></button>
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year"></span> The Noemi Effect · Nele Noemi Franken</span>
+    <span><a href="impressum.html" data-i18n="foot.imprint"></a> · <a href="datenschutz.html" data-i18n="foot.privacy"></a></span>
+  </div>
+</footer>
+
+<script>
+const EMAIL = "nelenoemifranken@gmail.com";
+
+const T = {
+de:{
+  "nav.services":"Leistungen","nav.about":"Über mich","nav.values":"Herzensthemen","nav.call":"Erstgespräch","nav.contact":"Kontakt",
+  "nav.effect":"Der Effekt","nav.events":"Gemeinnützige Events",
+  "hero.eyebrow":"Marketing für Organisationen, Vereine & gemeinnützige Events",
+  "hero.title":"Dein Anliegen. Mehr <em>Wirkung</em>.",
+  "hero.lead":"The Noemi Effect ist der Effekt, den du spürst: Deine Veranstaltung wird gesehen, die richtigen Menschen kommen, und du hast den Kopf frei für das, was dir wichtig ist.",
+  "hero.cta1":"Erstgespräch anfragen","hero.cta2":"So wirkt der Effekt",
+  "ring":"the noemi effect ✦ wirkung für dein anliegen ✦ ",
+  "fl.ads":"Sichtbarkeit","fl.ads2":"Reichweite ↑","fl.mail":"Einladung","fl.ai":"Unterstützung",
+  "eff.eyebrow":"Der Noemi Effect","eff.title":"Es geht um <em>dich</em> – und um das, was du bewegen willst.",
+  "eff.lead":"Mein Marketing hat ein Ziel: Es soll dir und deinem Anliegen spürbar helfen. Das ist der Effekt, für den ich arbeite.",
+  "e1.t":"Du wirst gesehen","e1.d":"Deine Veranstaltung, deine Organisation, deine Botschaft – sichtbar auf den Kanälen, auf denen deine Zielgruppe unterwegs ist.",
+  "e2.t":"Die richtigen Menschen kommen","e2.d":"Mehr Teilnehmende, Helfende, Partner und Unterstützer:innen, weil sie zur richtigen Zeit die richtige Einladung bekommen.",
+  "e3.t":"Du wirst entlastet","e3.d":"Ich übernehme Planung, Texte, Posts und Newsletter. Du hast mehr Zeit für deine Gäste, dein Team und deine Sache.",
+  "you.b":"Du","you.t":"Im Mittelpunkt stehst <em>du</em>, nicht ich. Ich höre zu, verstehe dein Ziel und baue das Marketing um dich herum.",
+  "np.eyebrow":"Gemeinnützige Veranstaltungen","np.title":"Dein Event verdient <em>volle Reihen</em>.",
+  "np.p1":"Benefizlauf, Spendengala, Vereinsfest, Charity-Turnier oder Aktionstag: Gemeinnützige Veranstaltungen leben davon, dass Menschen davon erfahren und mitmachen.",
+  "np.p2":"Genau dabei unterstütze ich dich am liebsten – von der ersten Ankündigung bis zum Dankeschön danach.",
+  "np.cta":"Über dein Event sprechen",
+  "np1.t":"Plan & Zeitachse","np1.d":"Wann wird was angekündigt? Ein klarer Fahrplan bis zum Eventtag.",
+  "np2.t":"Social Media & Reels","np2.d":"Teaser, Countdown, Mitmach-Aufrufe und Kurzvideos, die geteilt werden.",
+  "np3.t":"Einladungen & Newsletter","np3.d":"Persönliche Einladungen an Mitglieder, Unterstützer:innen und Partner.",
+  "np4.t":"Partner & Sponsoren sichtbar machen","np4.d":"Damit alle, die helfen, auch gesehen werden – und gerne wieder dabei sind.",
+  "np5.t":"Recap & Danke","np5.d":"Bilder, Zahlen und Geschichten nach dem Event, die Lust aufs nächste Mal machen.",
+  "f.np":"Gemeinnützige Veranstaltung",
+  "marquee":["Performance Marketing","Content Creation","Newsletter","Social Media","Community Building","KI-Workflows","Events","Visual Storytelling"],
+  "services.eyebrow":"Leistungen","services.title":"Was ich für dich <em>bewege</em>",
+  "services.lead":"Ich übernehme einzelne Bausteine oder den ganzen Kanal – für Marken, Startups, Vereine und Communities.",
+  "s1.t":"Performance Marketing","s1.d":"Google-Ads-Kampagnen aufsetzen und optimieren, sauberes Conversion-Tracking mit Tag Manager und GA4 – gesteuert nach dem, was wirklich zählt.",
+  "s2.t":"E-Commerce & Digital Systems","s2.d":"Webshop-Pflege, Produktseiten, Newsletter-Automationen und Push-Kampagnen, die aus Besucher:innen Kund:innen machen.",
+  "s3.t":"Content & Visual Storytelling","s3.d":"Blogartikel, Newsletter und Texte mit SEO-Feinschliff, dazu Foto- und Videocontent, der deine Geschichte erzählt.",
+  "s4.t":"Sales & Lead-Generierung","s4.d":"Kampagnen und Landingpages, die Interesse in Anfragen verwandeln – mit Gespür für Vertrieb und klaren Botschaften.",
+  "s5.t":"Community & Events","s5.d":"Communities aufbauen und pflegen, Events vom Teaser bis zum Recap begleiten und Menschen miteinander verbinden.",
+  "s6.t":"Social Media & Reels","s6.d":"Redaktionsplanung für Instagram, LinkedIn und TikTok, Reels und Kurzvideos im Look deiner Marke – unterstützt von KI-Workflows.",
+  "about.eyebrow":"Über mich","about.title":"Wer hinter dem <em>Effekt</em> steckt",
+  "about.p1":"Hey, ich bin Nele Noemi! Ich liebe es, Dinge nicht nur zu planen, sondern sie wirklich zum Leben zu erwecken. Ich bewege mich genau an der Schnittstelle, an der Kreativität auf echte Ergebnisse trifft: von datengetriebenen Kampagnen bis zu mitreißendem Content und Community-Events.",
+  "about.p2":"Ob beim Aufbau von Netzwerken rund um Zukunftsthemen wie KI oder bei der Gestaltung von visuellem Content – ich brenne dafür, Menschen zu verbinden und Marken eine unverwechselbare Stimme zu geben.",
+  "about.p3":"Wenn ich nicht gerade an Kampagnen feile oder im Fotostudio stehe, findet man mich beim Sport, auf Reisen beim Entdecken neuer Kulturen oder mit einer Kamera in der Hand.",
+  "about.sign":"Schön, dass du da bist!",
+  "pol.1":"Reisen","pol.2":"Kamera","pol.3":"Wachsen",
+  "values.eyebrow":"Herzensthemen","values.title":"Wofür mein <em>Herz</em> schlägt",
+  "values.lead":"Ich arbeite besonders gerne mit Menschen, die etwas bewegen wollen. Für Organisationen, Vereine und Communities setze ich mich mit voller Überzeugung ein.",
+  "v1.t":"Organisationen & Communities","v1.d":"Ob gemeinnützige Organisation, Verein oder Netzwerk: Ich unterstütze sehr gerne dabei, Sichtbarkeit aufzubauen und Menschen zusammenzubringen.",
+  "v2.t":"Female Empowerment","v2.d":"Frauen und Female Founders sichtbar machen und stärken liegt mir am Herzen. Projekte, die genau das tun, haben bei mir einen besonderen Platz.",
+  "v3.t":"Kinder & Bildung","v3.d":"Kinder und ihre Chancen sind mir sehr wichtig. Initiativen rund um Bildung und Kinder unterstütze ich mit besonders viel Leidenschaft.",
+  "call.eyebrow":"Erstgespräch","call.title":"So starten wir <em>gemeinsam</em>",
+  "call.lead":"Am Anfang steht immer ein unverbindliches Erstgespräch. Wir lernen uns kennen und schauen, wie ich dich am besten unterstützen kann.",
+  "st1.t":"Erstgespräch","st1.d":"In rund 30 Minuten erzählst du mir von deinem Vorhaben, deinen Zielen und deiner Zielgruppe – ganz unverbindlich, per Video oder Telefon.",
+  "st2.t":"Konzept","st2.d":"Ich schicke dir einen klaren Vorschlag: welche Kanäle, welche Maßnahmen, welcher Zeitrahmen.",
+  "st3.t":"Umsetzung","st3.d":"Wir legen los. Du bekommst regelmäßige Updates und Ergebnisse, die du nachvollziehen kannst.",
+  "band.t":"Lust auf ein <em>Erstgespräch</em>?","band.d":"Schreib mir kurz, worum es geht – ich melde mich mit Terminvorschlägen.","band.cta":"Erstgespräch anfragen",
+  "tools.eyebrow":"Toolkit","tools.title":"Tools &amp; <em>Sprachen</em>",
+  "tg1":"Performance & Analytics","tg2":"E-Mail, CRM & Web","tg3":"Social & Design","tg4":"Sprachen",
+  "l1":"Deutsch <b>· Muttersprache</b>","l2":"Englisch <b>· fließend</b>","l3":"Französisch <b>· gut</b>","l4":"Spanisch <b>· gut</b>",
+  "contact.eyebrow":"Kontakt","contact.title":"Lass uns <em>sprechen</em>.",
+  "contact.lead":"Erzähl mir kurz von deinem Projekt oder deiner Organisation – ich melde mich innerhalb von zwei Werktagen.",
+  "contact.info":"Du möchtest lieber direkt schreiben? Gerne per E-Mail oder über LinkedIn.","contact.loc":"Düsseldorf · remote im DACH-Raum und darüber hinaus",
+  "f.name":"Name","f.mail":"E-Mail","f.org":"Unternehmen / Organisation (optional)","f.topic":"Worum geht es?","f.other":"Etwas anderes",
+  "f.msg":"Deine Nachricht","f.call":"Ich interessiere mich für ein unverbindliches Erstgespräch.","f.when":"Wann passt es dir? (optional)",
+  "f.consent":"Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden.",
+  "f.send":"Nachricht senden","f.sending":"Wird gesendet …","f.ok":"Danke! Deine Nachricht ist angekommen.",
+  "f.err":"Das hat leider nicht geklappt. Schreib mir gerne direkt an ","f.invalid":"Bitte fülle Name, E-Mail und Nachricht aus und bestätige die Einwilligung.",
+  "foot.imprint":"Impressum","foot.privacy":"Datenschutz","subject":"Neue Anfrage über the noemi effect","subjectCall":"Anfrage Erstgespräch über the noemi effect"
+},
+en:{
+  "nav.services":"Services","nav.about":"About","nav.values":"What I care about","nav.call":"Intro call","nav.contact":"Contact",
+  "nav.effect":"The effect","nav.events":"Charity events",
+  "hero.eyebrow":"Marketing for organisations, associations & charity events",
+  "hero.title":"Your cause. More <em>impact</em>.",
+  "hero.lead":"The Noemi Effect is the effect you feel: your event gets seen, the right people show up, and your mind is free for what matters to you.",
+  "hero.cta1":"Book an intro call","hero.cta2":"How the effect works",
+  "ring":"the noemi effect ✦ impact for your cause ✦ ",
+  "fl.ads":"Visibility","fl.ads2":"Reach ↑","fl.mail":"Invitation","fl.ai":"Support",
+  "eff.eyebrow":"The Noemi Effect","eff.title":"It's about <em>you</em> – and what you want to move.",
+  "eff.lead":"My marketing has one goal: to genuinely help you and your cause. That's the effect I work for.",
+  "e1.t":"You get seen","e1.d":"Your event, your organisation, your message – visible on the channels where your audience spends its time.",
+  "e2.t":"The right people show up","e2.d":"More attendees, volunteers, partners and supporters, because they get the right invitation at the right time.",
+  "e3.t":"You get relief","e3.d":"I take care of planning, copy, posts and newsletters. You have more time for your guests, your team and your cause.",
+  "you.b":"You","you.t":"<em>You</em> are at the centre, not me. I listen, understand your goal and build the marketing around you.",
+  "np.eyebrow":"Charity & non-profit events","np.title":"Your event deserves <em>full rows</em>.",
+  "np.p1":"Charity run, fundraising gala, club festival, benefit tournament or action day: non-profit events thrive when people hear about them and join in.",
+  "np.p2":"That's exactly where I love to support you – from the first announcement to the thank-you afterwards.",
+  "np.cta":"Talk about your event",
+  "np1.t":"Plan & timeline","np1.d":"What gets announced when? A clear roadmap up to event day.",
+  "np2.t":"Social media & reels","np2.d":"Teasers, countdowns, calls to join and short videos that get shared.",
+  "np3.t":"Invitations & newsletters","np3.d":"Personal invitations to members, supporters and partners.",
+  "np4.t":"Make partners & sponsors visible","np4.d":"So everyone who helps is seen – and happy to come back.",
+  "np5.t":"Recap & thank-you","np5.d":"Photos, numbers and stories after the event that build excitement for next time.",
+  "f.np":"Charity / non-profit event",
+  "marquee":["Performance Marketing","Content Creation","Newsletters","Social Media","Community Building","AI Workflows","Events","Visual Storytelling"],
+  "services.eyebrow":"Services","services.title":"What I <em>move</em> for you",
+  "services.lead":"I take on single pieces or the whole channel – for brands, startups, non-profits and communities.",
+  "s1.t":"Performance Marketing","s1.d":"Setting up and optimising Google Ads campaigns, clean conversion tracking with Tag Manager and GA4 – steered by what really matters.",
+  "s2.t":"E-Commerce & Digital Systems","s2.d":"Online shop care, product pages, newsletter automations and push campaigns that turn visitors into customers.",
+  "s3.t":"Content & Visual Storytelling","s3.d":"Blog posts, newsletters and copy with SEO polish, plus photo and video content that tells your story.",
+  "s4.t":"Sales & Lead Generation","s4.d":"Campaigns and landing pages that turn interest into enquiries – with a feel for sales and clear messages.",
+  "s5.t":"Community & Events","s5.d":"Building and nurturing communities, supporting events from teaser to recap and bringing people together.",
+  "s6.t":"Social Media & Reels","s6.d":"Editorial planning for Instagram, LinkedIn and TikTok, reels and short videos in your brand's look – supported by AI workflows.",
+  "about.eyebrow":"About","about.title":"Who's behind the <em>effect</em>",
+  "about.p1":"Hey, I'm Nele Noemi! I love not just planning things, but truly bringing them to life. I work right where creativity meets real results: from data-driven campaigns to captivating content and community events.",
+  "about.p2":"Whether building networks around future topics like AI or creating visual content – I'm passionate about connecting people and giving brands an unmistakable voice.",
+  "about.p3":"When I'm not fine-tuning campaigns or standing in the photo studio, you'll find me doing sports, travelling and discovering new cultures, or with a camera in my hand.",
+  "about.sign":"Lovely to have you here!",
+  "pol.1":"Travel","pol.2":"Camera","pol.3":"Growth",
+  "values.eyebrow":"What I care about","values.title":"Where my <em>heart</em> is",
+  "values.lead":"I especially love working with people who want to make a difference. I support organisations, non-profits and communities with full conviction.",
+  "v1.t":"Organisations & Communities","v1.d":"Non-profit, association or network: I'm always happy to help build visibility and bring people together.",
+  "v2.t":"Female Empowerment","v2.d":"Making women and female founders visible and strong is close to my heart. Projects that do exactly that have a special place with me.",
+  "v3.t":"Children & Education","v3.d":"Children and their opportunities matter a lot to me. I support initiatives around education and children with particular passion.",
+  "call.eyebrow":"Intro call","call.title":"How we start <em>together</em>",
+  "call.lead":"It always begins with a no-obligation intro call. We get to know each other and see how I can best support you.",
+  "st1.t":"Intro call","st1.d":"In about 30 minutes you tell me about your project, goals and audience – no strings attached, via video or phone.",
+  "st2.t":"Concept","st2.d":"I send you a clear proposal: which channels, which measures, which timeline.",
+  "st3.t":"Execution","st3.d":"We get going. You receive regular updates and results you can follow.",
+  "band.t":"Fancy an <em>intro call</em>?","band.d":"Drop me a short note about your project – I'll get back to you with a few time slots.","band.cta":"Book an intro call",
+  "tools.eyebrow":"Toolkit","tools.title":"Tools &amp; <em>languages</em>",
+  "tg1":"Performance & Analytics","tg2":"Email, CRM & Web","tg3":"Social & Design","tg4":"Languages",
+  "l1":"German <b>· native</b>","l2":"English <b>· fluent</b>","l3":"French <b>· good</b>","l4":"Spanish <b>· good</b>",
+  "contact.eyebrow":"Contact","contact.title":"Let's <em>talk</em>.",
+  "contact.lead":"Tell me a little about your project or organisation – I'll get back to you within two working days.",
+  "contact.info":"Prefer to write directly? Reach me by email or on LinkedIn.","contact.loc":"Düsseldorf · remote across Europe",
+  "f.name":"Name","f.mail":"Email","f.org":"Company / organisation (optional)","f.topic":"What's it about?","f.other":"Something else",
+  "f.msg":"Your message","f.call":"I'm interested in a no-obligation intro call.","f.when":"When suits you? (optional)",
+  "f.consent":"I agree that my details may be used to process my enquiry.",
+  "f.send":"Send message","f.sending":"Sending …","f.ok":"Thank you! Your message has arrived.",
+  "f.err":"Something went wrong. Feel free to write to me directly at ","f.invalid":"Please fill in name, email and message and tick the consent box.",
+  "foot.imprint":"Legal notice","foot.privacy":"Privacy","subject":"New enquiry via the noemi effect","subjectCall":"Intro call request via the noemi effect"
+},
+fr:{
+  "nav.services":"Services","nav.about":"À propos","nav.values":"Mes engagements","nav.call":"Premier échange","nav.contact":"Contact",
+  "nav.effect":"L'effet","nav.events":"Événements solidaires",
+  "hero.eyebrow":"Marketing pour organisations, associations & événements solidaires",
+  "hero.title":"Votre cause. Plus d'<em>impact</em>.",
+  "hero.lead":"The Noemi Effect, c'est l'effet que vous ressentez : votre événement est vu, les bonnes personnes viennent, et vous avez l'esprit libre pour ce qui compte pour vous.",
+  "hero.cta1":"Demander un premier échange","hero.cta2":"Comment agit l'effet",
+  "ring":"the noemi effect ✦ de l'impact pour votre cause ✦ ",
+  "fl.ads":"Visibilité","fl.ads2":"Portée ↑","fl.mail":"Invitation","fl.ai":"Soutien",
+  "eff.eyebrow":"The Noemi Effect","eff.title":"Il s'agit de <em>vous</em> – et de ce que vous voulez faire bouger.",
+  "eff.lead":"Mon marketing n'a qu'un objectif : vous aider concrètement, vous et votre cause. C'est l'effet pour lequel je travaille.",
+  "e1.t":"Vous êtes vu·e","e1.d":"Votre événement, votre organisation, votre message – visibles sur les canaux où se trouve votre public.",
+  "e2.t":"Les bonnes personnes viennent","e2.d":"Plus de participant·es, de bénévoles, de partenaires et de soutiens, grâce à la bonne invitation au bon moment.",
+  "e3.t":"Vous êtes soulagé·e","e3.d":"Je m'occupe du planning, des textes, des posts et des newsletters. Vous avez plus de temps pour vos invités, votre équipe et votre cause.",
+  "you.b":"Vous","you.t":"C'est <em>vous</em> qui êtes au centre, pas moi. J'écoute, je comprends votre objectif et je construis le marketing autour de vous.",
+  "np.eyebrow":"Événements solidaires","np.title":"Votre événement mérite une <em>salle comble</em>.",
+  "np.p1":"Course solidaire, gala de charité, fête associative, tournoi caritatif ou journée d'action : les événements solidaires vivent grâce aux personnes qui en entendent parler et y participent.",
+  "np.p2":"C'est précisément là que j'aime vous soutenir – de la première annonce jusqu'aux remerciements.",
+  "np.cta":"Parler de votre événement",
+  "np1.t":"Plan & calendrier","np1.d":"Quoi annoncer et quand ? Une feuille de route claire jusqu'au jour J.",
+  "np2.t":"Réseaux sociaux & reels","np2.d":"Teasers, comptes à rebours, appels à participer et vidéos courtes qui se partagent.",
+  "np3.t":"Invitations & newsletters","np3.d":"Des invitations personnelles pour membres, soutiens et partenaires.",
+  "np4.t":"Valoriser partenaires & sponsors","np4.d":"Pour que chaque personne qui aide soit vue – et revienne avec plaisir.",
+  "np5.t":"Recap & remerciements","np5.d":"Photos, chiffres et histoires après l'événement, pour donner envie de la prochaine fois.",
+  "f.np":"Événement solidaire",
+  "marquee":["Marketing de performance","Création de contenu","Newsletter","Réseaux sociaux","Communautés","Workflows IA","Événements","Storytelling visuel"],
+  "services.eyebrow":"Services","services.title":"Ce que je fais <em>avancer</em> pour vous",
+  "services.lead":"Je prends en charge un élément ou tout le canal – pour des marques, startups, associations et communautés.",
+  "s1.t":"Marketing de performance","s1.d":"Création et optimisation de campagnes Google Ads, suivi des conversions fiable avec Tag Manager et GA4 – piloté par ce qui compte vraiment.",
+  "s2.t":"E-commerce & systèmes digitaux","s2.d":"Gestion de boutique en ligne, fiches produits, automatisations de newsletter et notifications push qui transforment les visiteurs en clients.",
+  "s3.t":"Contenu & storytelling visuel","s3.d":"Articles de blog, newsletters et textes optimisés SEO, ainsi que des contenus photo et vidéo qui racontent votre histoire.",
+  "s4.t":"Vente & génération de leads","s4.d":"Des campagnes et landing pages qui transforment l'intérêt en demandes – avec le sens de la vente et des messages clairs.",
+  "s5.t":"Communauté & événements","s5.d":"Créer et animer des communautés, accompagner des événements du teaser au recap et rassembler les gens.",
+  "s6.t":"Réseaux sociaux & Reels","s6.d":"Planning éditorial pour Instagram, LinkedIn et TikTok, reels et vidéos courtes aux couleurs de votre marque – avec l'appui de workflows IA.",
+  "about.eyebrow":"À propos","about.title":"Qui se cache derrière l'<em>effet</em>",
+  "about.p1":"Hello, je suis Nele Noemi ! J'aime non seulement planifier, mais surtout donner vie aux idées. Je travaille exactement là où la créativité rencontre des résultats concrets : des campagnes pilotées par les données aux contenus captivants et aux événements communautaires.",
+  "about.p2":"Qu'il s'agisse de créer des réseaux autour de sujets d'avenir comme l'IA ou de concevoir des contenus visuels, je suis passionnée par l'idée de relier les gens et de donner aux marques une voix unique.",
+  "about.p3":"Quand je ne peaufine pas des campagnes ou ne suis pas au studio photo, je fais du sport, je voyage à la découverte de nouvelles cultures ou je me promène appareil photo à la main.",
+  "about.sign":"Ravie de vous voir ici !",
+  "pol.1":"Voyages","pol.2":"Photo","pol.3":"Grandir",
+  "values.eyebrow":"Mes engagements","values.title":"Ce qui me tient à <em>cœur</em>",
+  "values.lead":"J'aime particulièrement travailler avec des personnes qui veulent faire bouger les choses. Je soutiens les organisations, associations et communautés avec conviction.",
+  "v1.t":"Organisations & communautés","v1.d":"Association, ONG ou réseau : je vous aide avec plaisir à gagner en visibilité et à rassembler les gens.",
+  "v2.t":"Female Empowerment","v2.d":"Rendre visibles et renforcer les femmes et les fondatrices me tient à cœur. Les projets qui le font ont une place particulière pour moi.",
+  "v3.t":"Enfants & éducation","v3.d":"Les enfants et leurs chances comptent beaucoup pour moi. Je soutiens les initiatives liées à l'éducation et à l'enfance avec une passion particulière.",
+  "call.eyebrow":"Premier échange","call.title":"Comment nous commençons <em>ensemble</em>",
+  "call.lead":"Tout commence par un premier échange sans engagement. Nous faisons connaissance et voyons comment je peux vous aider au mieux.",
+  "st1.t":"Premier échange","st1.d":"En 30 minutes environ, vous me parlez de votre projet, de vos objectifs et de votre public – sans engagement, en visio ou par téléphone.",
+  "st2.t":"Concept","st2.d":"Je vous envoie une proposition claire : quels canaux, quelles actions, quel calendrier.",
+  "st3.t":"Mise en œuvre","st3.d":"On se lance. Vous recevez des points réguliers et des résultats faciles à suivre.",
+  "band.t":"Envie d'un <em>premier échange</em> ?","band.d":"Écrivez-moi quelques mots sur votre projet – je reviens vers vous avec des créneaux.","band.cta":"Demander un premier échange",
+  "tools.eyebrow":"Boîte à outils","tools.title":"Outils &amp; <em>langues</em>",
+  "tg1":"Performance & Analytics","tg2":"E-mail, CRM & Web","tg3":"Social & Design","tg4":"Langues",
+  "l1":"Allemand <b>· langue maternelle</b>","l2":"Anglais <b>· courant</b>","l3":"Français <b>· bon niveau</b>","l4":"Espagnol <b>· bon niveau</b>",
+  "contact.eyebrow":"Contact","contact.title":"Parlons-en <em>ensemble</em>.",
+  "contact.lead":"Parlez-moi brièvement de votre projet ou de votre organisation – je vous réponds sous deux jours ouvrés.",
+  "contact.info":"Vous préférez écrire directement ? Par e-mail ou sur LinkedIn.","contact.loc":"Düsseldorf · à distance partout en Europe",
+  "f.name":"Nom","f.mail":"E-mail","f.org":"Entreprise / organisation (facultatif)","f.topic":"De quoi s'agit-il ?","f.other":"Autre chose",
+  "f.msg":"Votre message","f.call":"Je suis intéressé·e par un premier échange sans engagement.","f.when":"Quand êtes-vous disponible ? (facultatif)",
+  "f.consent":"J'accepte que mes données soient utilisées pour traiter ma demande.",
+  "f.send":"Envoyer le message","f.sending":"Envoi en cours …","f.ok":"Merci ! Votre message est bien arrivé.",
+  "f.err":"L'envoi n'a pas fonctionné. Écrivez-moi directement à ","f.invalid":"Merci de remplir le nom, l'e-mail et le message et de cocher le consentement.",
+  "foot.imprint":"Mentions légales","foot.privacy":"Confidentialité","subject":"Nouvelle demande via the noemi effect","subjectCall":"Demande de premier échange via the noemi effect"
+}};
+
+let lang = "de";
+function setLang(l){
+  if(!T[l]) l = "de";
+  lang = l;
+  const d = T[l];
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(el => { const v = d[el.dataset.i18n]; if(v!==undefined) el.textContent = v; });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => { const v = d[el.dataset.i18nHtml]; if(v!==undefined) el.innerHTML = v; });
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang===l));
+  const rt = document.getElementById("ringtext");
+  rt.textContent = d.ring.repeat(2);
+  rt.setAttribute("textLength", "548"); rt.setAttribute("lengthAdjust", "spacingAndGlyphs");
+  const items = d.marquee.map(t => `<span>${t}</span>`).join("");
+  document.getElementById("track").innerHTML = items + items;
+  try{ localStorage.setItem("tne-lang", l); }catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+let saved = null; try{ saved = localStorage.getItem("tne-lang"); }catch(e){}
+setLang(saved || (navigator.language||"de").slice(0,2));
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const hdr = document.querySelector("header");
+addEventListener("scroll", () => hdr.classList.toggle("scrolled", scrollY > 8), {passive:true});
+
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+// Erstgespräch-Buttons haken die Checkbox im Formular an
+const callBox = document.getElementById("f-call"), whenWrap = document.getElementById("f-when-wrap");
+const syncWhen = () => { whenWrap.hidden = !callBox.checked; };
+callBox.addEventListener("change", syncWhen);
+document.querySelectorAll(".js-call").forEach(a => a.addEventListener("click", () => { callBox.checked = true; syncWhen(); setTimeout(() => document.getElementById("f-name").focus({preventScroll:true}), 600); }));
+
+// Kontaktformular → FormSubmit (leitet an EMAIL weiter)
+const form = document.getElementById("form"), status = document.getElementById("status");
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  status.className = "status";
+  const name = form.Name.value.trim(), mail = form.email.value.trim(), msg = form.Nachricht.value.trim();
+  if(!name || !/^\S+@\S+\.\S+$/.test(mail) || !msg || !document.getElementById("f-consent").checked){
+    status.textContent = T[lang]["f.invalid"]; status.classList.add("err"); return;
+  }
+  if(form._honey.value) return;
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true; btn.textContent = T[lang]["f.sending"];
+  const data = new FormData(form);
+  if(!callBox.checked){ data.delete("Wunschtermin"); data.set("Erstgespraech","Nein"); }
+  data.append("_subject", callBox.checked ? T[lang].subjectCall : T[lang].subject);
+  data.append("_template", "table");
+  data.append("_captcha", "false");
+  data.append("Sprache", lang.toUpperCase());
+  try{
+    const r = await fetch("https://formsubmit.co/ajax/" + EMAIL, {method:"POST", headers:{Accept:"application/json"}, body:data});
+    const j = await r.json().catch(()=>({}));
+    if(!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || r.status);
+    status.textContent = T[lang]["f.ok"]; status.classList.add("ok"); form.reset(); syncWhen();
+  }catch(err){
+    status.innerHTML = ""; status.classList.add("err");
+    status.append(T[lang]["f.err"]);
+    const a = document.createElement("a"); a.href = "mailto:" + EMAIL; a.textContent = EMAIL; a.style.color = "inherit";
+    status.append(a, ".");
+  }finally{
+    btn.disabled = false; btn.textContent = T[lang]["f.send"];
+  }
+});
+</script>
+</body>
+</html>
